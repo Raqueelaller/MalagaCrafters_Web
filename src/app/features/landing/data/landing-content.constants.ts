@@ -218,7 +218,7 @@ export const PROJECT_TYPE_OPTIONS: readonly SelectOption[] = [
   { value: 'decoracion', label: 'Decoración' },
   { value: 'celebracion', label: 'Boda, comunión o celebración' },
   { value: 'grabado', label: 'Grabado sobre un objeto' },
-  { value: 'otro', label: 'Otra idea' },
+  { value: 'nuevo-pedido', label: 'Nuevo pedido' },
 ] as const;
 
 export const MATERIAL_OPTIONS: readonly SelectOption[] = [

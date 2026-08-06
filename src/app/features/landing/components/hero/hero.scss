@@ -73,6 +73,9 @@
   gap: var(--space-3);
   margin-top: var(--space-6);
 }
+.hero__mobile-contact {
+  display: none;
+}
 .hero__trust {
   display: flex;
   flex-wrap: wrap;
@@ -151,6 +154,9 @@
   }
   .hero__actions {
     display: grid;
+  }
+  .hero__mobile-contact {
+    display: inline-flex;
   }
   .hero__trust {
     display: grid;
