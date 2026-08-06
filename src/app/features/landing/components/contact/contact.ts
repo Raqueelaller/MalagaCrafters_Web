@@ -63,13 +63,6 @@ export class Contact {
     consent: new FormControl(false, { nonNullable: true, validators: [Validators.requiredTrue] }),
   });
 
-  constructor() {
-    if (typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('submitted') === 'true') {
-      this.sent.set(true);
-      window.history.replaceState({}, document.title, window.location.pathname + window.location.hash);
-    }
-  }
-
   protected controlInvalid(controlName: keyof ContactFormControls): boolean {
     const control = this.form.controls[controlName];
     return control.invalid && (control.dirty || control.touched);
@@ -130,6 +123,32 @@ export class Contact {
       return;
     }
 
-    requestAnimationFrame(() => form.submit());
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        body: new FormData(form),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Netlify form submission failed with status ${response.status}`);
+      }
+
+      this.sent.set(true);
+      this.form.reset({
+        name: '',
+        email: '',
+        projectType: '',
+        material: 'por-definir',
+        description: '',
+        desiredDate: '',
+        consent: false,
+      });
+      this.removeFile();
+    } catch {
+      this.submitError.set(true);
+    } finally {
+      this.sending.set(false);
+      this.cdr.detectChanges();
+    }
   }
 }
