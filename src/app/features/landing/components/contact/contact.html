@@ -40,11 +40,12 @@
       <form
         class="contact-form"
         name="project-request"
+        action="/?submitted=true#contacto"
         method="POST"
         enctype="multipart/form-data"
         data-netlify="true"
         [formGroup]="form"
-        (ngSubmit)="submit($event)"
+        (submit)="submit($event)"
         novalidate
       >
         <input type="hidden" name="form-name" value="project-request" />
