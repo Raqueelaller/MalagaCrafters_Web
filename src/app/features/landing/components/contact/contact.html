@@ -43,12 +43,17 @@
         action="/"
         method="POST"
         enctype="multipart/form-data"
-        data-netlify="true"
+        netlify
+        netlify-honeypot="bot-field"
         [formGroup]="form"
         (submit)="submit($event)"
         novalidate
       >
         <input type="hidden" name="form-name" value="project-request" />
+        <p class="form-honeypot" aria-hidden="true">
+          <label for="bot-field">No rellenes este campo</label>
+          <input id="bot-field" name="bot-field" type="text" tabindex="-1" autocomplete="off" />
+        </p>
         <div class="form-grid">
           <div class="field">
             <label for="name">Nombre <span aria-hidden="true">*</span></label

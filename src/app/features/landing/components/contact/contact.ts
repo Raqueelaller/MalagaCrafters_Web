@@ -124,9 +124,27 @@ export class Contact {
     }
 
     try {
+      const formData = new FormData(form);
+      const projectFile = formData.get('projectFile');
+      const hasFile = projectFile instanceof File && projectFile.size > 0;
+      let body: BodyInit;
+      let headers: HeadersInit | undefined;
+
+      if (hasFile) {
+        body = formData;
+      } else {
+        const encodedBody = new URLSearchParams();
+        formData.forEach((value, key) => {
+          if (typeof value === 'string') encodedBody.append(key, value);
+        });
+        body = encodedBody.toString();
+        headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
+      }
+
       const response = await fetch('/', {
         method: 'POST',
-        body: new FormData(form),
+        headers,
+        body,
       });
 
       if (!response.ok) {
