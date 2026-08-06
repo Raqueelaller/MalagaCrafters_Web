@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   inject,
@@ -31,6 +32,7 @@ interface ContactFormControls {
 })
 export class Contact {
   private readonly fileInput = viewChild<ElementRef<HTMLInputElement>>('fileInput');
+  private readonly cdr = inject(ChangeDetectorRef);
   protected readonly contact = CONTACT;
   protected readonly projectTypes = PROJECT_TYPE_OPTIONS;
   protected readonly materials = MATERIAL_OPTIONS;
@@ -109,13 +111,25 @@ export class Contact {
   }
 
   protected async submit(event: Event): Promise<void> {
+    event.preventDefault();
+
     if (this.form.invalid || this.fileError()) {
-      event.preventDefault();
       this.form.markAllAsTouched();
       return;
     }
 
     this.sending.set(true);
     this.submitError.set(false);
+    this.cdr.detectChanges();
+
+    const form = event.target as HTMLFormElement | null;
+
+    if (!form) {
+      this.sending.set(false);
+      this.submitError.set(true);
+      return;
+    }
+
+    requestAnimationFrame(() => form.submit());
   }
 }
