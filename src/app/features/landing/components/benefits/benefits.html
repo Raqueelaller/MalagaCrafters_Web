@@ -1,0 +1,23 @@
+<section id="beneficios" class="section section--sand" aria-labelledby="benefits-title">
+  <div class="container benefits-layout">
+    <div class="benefits-intro">
+      <app-section-heading
+        eyebrow="Por qué MalagaCrafters"
+        title="No elegimos una pieza de una estantería. La hacemos contigo."
+        description="Escuchamos primero, elegimos el material después y fabricamos cuando cada detalle tiene sentido para tu idea."
+        headingId="benefits-title"
+      />
+    </div>
+    <div class="benefits">
+      @for (benefit of benefits; track benefit.title) {
+        <article class="benefit">
+          <app-icon [name]="benefit.icon" />
+          <div>
+            <h3>{{ benefit.title }}</h3>
+            <p>{{ benefit.description }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

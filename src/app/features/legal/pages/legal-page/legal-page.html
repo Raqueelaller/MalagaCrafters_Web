@@ -1,0 +1,27 @@
+<main id="main-content" class="legal-page">
+  <header class="legal-page__header">
+    <div class="container">
+      <p>{{ content.eyebrow }}</p>
+      <h1>{{ content.title }}</h1>
+      <span>{{ content.description }}</span>
+    </div>
+  </header>
+  <article class="legal-page__content">
+    @for (section of content.sections; track section.title) {
+      <section>
+        <h2>{{ section.title }}</h2>
+        @for (paragraph of section.paragraphs; track paragraph) {
+          <p>{{ paragraph }}</p>
+        }
+        @if (section.items; as items) {
+          <ul>
+            @for (item of items; track item) {
+              <li>{{ item }}</li>
+            }
+          </ul>
+        }
+      </section>
+    }
+    <p class="legal-page__updated">Última actualización: 5 de agosto de 2026.</p>
+  </article>
+</main>

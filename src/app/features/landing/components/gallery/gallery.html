@@ -1,0 +1,31 @@
+<section id="trabajos" class="section section--navy" aria-labelledby="gallery-title">
+  <div class="container">
+    <app-section-heading
+      eyebrow="Trabajos reales"
+      title="Ideas que ya han cobrado vida"
+      description="Una selección de proyectos realizados para personas y momentos diferentes. No son modelos cerrados: tu diseño puede empezar en otro lugar completamente distinto."
+      headingId="gallery-title"
+      tone="inverse"
+    />
+    <div class="gallery">
+      @for (item of items; track item.image; let i = $index) {
+        <figure class="gallery__item">
+          <div
+            class="gallery__image"
+            appReveal="fade-up"
+            [revealDelay]="i * 0.08"
+          >
+            <img [src]="item.image" [alt]="item.alt" width="1086" height="1448" loading="lazy" />
+          </div>
+          <figcaption>
+            ><strong>{{ item.caption }}</strong>
+          </figcaption>
+        </figure>
+      }
+    </div>
+    <div class="gallery__cta">
+      <p>¿Tu idea no se parece a ninguna de estas?</p>
+      <app-button href="#contacto" icon="arrow-right">Cuéntanosla</app-button>
+    </div>
+  </div>
+</section>

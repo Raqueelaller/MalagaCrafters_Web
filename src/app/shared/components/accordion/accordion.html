@@ -1,0 +1,27 @@
+<div class="accordion" [class.accordion--inverse]="tone() === 'inverse'">
+  @for (item of items(); track item.id) {
+    <article class="accordion__item" [class.accordion__item--open]="openItem() === item.id">
+      <h3>
+        <button
+          type="button"
+          [id]="'faq-button-' + item.id"
+          [attr.aria-expanded]="openItem() === item.id"
+          [attr.aria-controls]="'faq-panel-' + item.id"
+          (click)="toggle(item.id)"
+        >
+          <span>{{ item.question }}</span
+          ><app-icon name="chevron-down" size="small" />
+        </button>
+      </h3>
+      <div
+        class="accordion__panel"
+        [id]="'faq-panel-' + item.id"
+        role="region"
+        [attr.aria-labelledby]="'faq-button-' + item.id"
+        [attr.hidden]="openItem() !== item.id ? '' : null"
+      >
+        <p>{{ item.answer }}</p>
+      </div>
+    </article>
+  }
+</div>

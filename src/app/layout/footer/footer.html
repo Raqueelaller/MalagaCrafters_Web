@@ -1,0 +1,57 @@
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <a href="/" aria-label="MalagaCrafters, ir al inicio">
+        <img
+          src="/images/logo_navBar_footer.png"
+          width="1024"
+          height="1024"
+          alt="Símbolo de MalagaCrafters"
+          loading="lazy"
+        />
+      </a>
+      <p>
+        Diseño, corte y grabado láser para convertir una idea personal en una pieza que solo puede
+        ser tuya.
+      </p>
+    </div>
+    <div>
+      <h2>Explora</h2>
+      <ul>
+        @for (item of navigationItems; track item.sectionId) {
+          <li>
+            <a [href]="item.href">{{ item.label }}</a>
+          </li>
+        }
+      </ul>
+    </div>
+    <div>
+      <h2>Contáctanos</h2>
+      <ul>
+        <li>
+          <a [href]="contact.emailHref"
+            ><app-icon name="email" size="small" />{{ contact.email }}</a
+          >
+        </li>
+        <li>
+          <a [href]="contact.instagram" target="_blank" rel="noopener noreferrer"
+            ><app-icon name="instagram" size="small" />Instagram</a
+          >
+        </li>
+        <li>
+          <a [href]="contact.tiktok" target="_blank" rel="noopener noreferrer"
+            ><app-icon name="tiktok" size="small" />TikTok</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <p>© {{ currentYear }} MalagaCrafters</p>
+    <nav aria-label="Enlaces legales">
+      <a href="/aviso-legal">Aviso legal</a>
+      <a href="/politica-privacidad">Política de privacidad</a>
+      <a href="/politica-cookies">Política de cookies</a>
+    </nav>
+  </div>
+</footer>

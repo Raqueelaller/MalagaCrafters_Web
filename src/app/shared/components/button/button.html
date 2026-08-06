@@ -1,0 +1,13 @@
+<a
+  class="button"
+  [class]="'button button--' + variant()"
+  [href]="href()"
+  [target]="target()"
+  [attr.rel]="target() === '_blank' ? 'noopener noreferrer' : null"
+  [attr.aria-label]="ariaLabel()"
+>
+  <ng-content />
+  @if (icon(); as iconName) {
+    <app-icon [name]="iconName" size="small" />
+  }
+</a>

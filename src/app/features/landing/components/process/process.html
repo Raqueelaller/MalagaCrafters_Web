@@ -1,0 +1,33 @@
+<section id="proceso" class="section section--white" aria-labelledby="process-title">
+  <div class="container">
+    <app-section-heading
+      eyebrow="Así trabajamos"
+      title="De tu idea a tus manos"
+      description="Un proceso directo, acompañado y sin productos estándar. Antes de fabricar, concretamos contigo lo que necesita el proyecto."
+      headingId="process-title"
+    />
+    <ol class="process">
+      @for (step of steps; track step.number) {
+        <li class="process__step">
+          <div class="process__icon">
+            <app-icon [name]="step.icon" size="large" />
+          </div>
+          <div>
+            <h3>{{ step.title }}</h3>
+            <p>{{ step.description }}</p>
+          </div>
+        </li>
+      }
+    </ol>
+    <div class="process__note">
+      <div>
+        <app-icon name="clock" />
+        <p>
+          <strong>Plazo mínimo orientativo de fabricación: 72 horas.</strong
+          ><span>El plazo final depende de cada diseño y se confirma antes de empezar.</span>
+        </p>
+      </div>
+      <app-button href="#contacto" icon="arrow-right">Empezar un proyecto</app-button>
+    </div>
+  </div>
+</section>

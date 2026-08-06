@@ -1,0 +1,33 @@
+<section id="ideas" class="section section--white" aria-labelledby="ideas-title">
+  <div class="container">
+    <app-section-heading
+      eyebrow="Posibilidades"
+      title="¿Qué podemos crear juntos?"
+      description="Estas piezas son solo un punto de partida. Si puedes explicarnos tu idea, podemos estudiar cómo convertirla en algo real y personal."
+      headingId="ideas-title"
+    />
+    <div class="categories">
+      @for (category of categories; track category.title; let i = $index) {
+        <article class="category-card">
+          <div
+            class="category-card__image"
+            appReveal="scale-in"
+            [revealDelay]="i * 0.08"
+          >
+            <img
+              [src]="category.image"
+              [alt]="category.alt"
+              width="1086"
+              height="1086"
+              loading="lazy"
+            />
+          </div>
+          <div class="category-card__content">
+            <h3>{{ category.title }}</h3>
+            <p>{{ category.description }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

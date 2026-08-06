@@ -1,0 +1,62 @@
+@use '../../../../../styles/abstracts/mixins' as mixins;
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-5);
+}
+.gallery__item {
+  @include mixins.surface-card;
+  @include mixins.card-hover;
+  overflow: hidden;
+}
+.gallery__image {
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  background: var(--color-sand-50);
+}
+.gallery__image img {
+  width: 100%;
+  height: 100%;
+  padding: var(--space-4);
+  object-fit: contain;
+}
+.gallery figcaption {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-5) var(--space-5);
+}
+.gallery figcaption span {
+  color: var(--color-navy-700);
+  font: var(--font-label);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.gallery figcaption strong {
+  color: var(--color-navy-950);
+  font: var(--font-h4);
+}
+.gallery__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-5);
+  margin-top: var(--space-7);
+  text-align: center;
+}
+.gallery__cta p {
+  margin: 0;
+  color: var(--color-white-76);
+  font: var(--font-body-lg);
+}
+@media (max-width: 48rem) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+  .gallery figcaption {
+    padding: var(--space-4);
+  }
+  .gallery__cta {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}

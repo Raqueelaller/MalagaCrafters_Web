@@ -1,0 +1,75 @@
+@use '../../../../styles/abstracts/mixins' as mixins;
+
+:host {
+  display: inline-flex;
+}
+
+.button {
+  @include mixins.focus-ring;
+  display: inline-flex;
+  min-height: var(--size-control-lg);
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  border: 1px solid transparent;
+  border-radius: var(--radius-full);
+  font: var(--font-button);
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform var(--motion-fast) var(--ease-standard),
+    color var(--motion-fast) var(--ease-standard),
+    background-color var(--motion-fast) var(--ease-standard),
+    border-color var(--motion-fast) var(--ease-standard),
+    box-shadow var(--motion-fast) var(--ease-standard);
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.button--primary {
+  color: var(--color-navy-950);
+  background: var(--color-gold-400);
+  box-shadow: var(--shadow-button);
+
+  &:hover {
+    background: var(--color-gold-300);
+    box-shadow: var(--shadow-hover);
+  }
+}
+
+.button--secondary {
+  color: var(--color-navy-900);
+  background: var(--color-white);
+  border-color: var(--color-border);
+
+  &:hover {
+    border-color: var(--color-navy-500);
+    background: var(--color-sand-50);
+  }
+}
+
+.button--ghost {
+  color: var(--color-white);
+  background: transparent;
+  border-color: var(--color-white-36);
+
+  &:hover {
+    background: var(--color-white-10);
+    border-color: var(--color-white-62);
+  }
+}
+
+@media (max-width: 31.25rem) {
+  :host {
+    width: 100%;
+  }
+  .button {
+    width: 100%;
+  }
+}

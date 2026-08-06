@@ -1,1 +1,127 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'styles/abstracts/tokens';
+@use 'styles/abstracts/mixins' as mixins;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) + var(--space-4));
+}
+
+body {
+  min-width: 20rem;
+  margin: 0;
+  color: var(--color-text);
+  background: var(--color-sand-50);
+  font: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+::selection {
+  color: var(--color-navy-950);
+  background: var(--color-gold-300);
+}
+
+.container {
+  @include mixins.container;
+}
+
+.section {
+  padding-block: var(--space-11);
+  scroll-margin-top: var(--header-height);
+}
+
+.section--white {
+  background: var(--color-white);
+}
+.section--sand {
+  background: var(--color-sand-100);
+}
+.section--navy {
+  color: var(--color-white);
+  background: var(--color-navy-950);
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 1000;
+  inset: var(--space-3) auto auto var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  color: var(--color-navy-950);
+  background: var(--color-gold-400);
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  transform: translateY(-180%);
+  transition: transform var(--motion-fast) var(--ease-standard);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 48rem) {
+  .section {
+    padding-block: var(--space-9);
+  }
+}
+
+@media (max-width: 35rem) {
+  .section {
+    padding-block: var(--space-8);
+  }
+}

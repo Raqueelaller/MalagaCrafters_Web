@@ -1,0 +1,16 @@
+<section id="preguntas" class="section section--navy" aria-labelledby="faq-title">
+  <div class="container faq-layout">
+    <div class="faq-intro">
+      <app-section-heading
+        eyebrow="Sin dudas"
+        title="Lo que conviene saber antes de empezar"
+        description="Cada idea es distinta, pero estas respuestas te ayudarán a entender cómo trabajamos."
+        headingId="faq-title"
+        tone="inverse"
+      />
+      <p>¿No encuentras tu respuesta?</p>
+      <app-button href="#contacto" variant="ghost" icon="arrow-right">Pregúntanos</app-button>
+    </div>
+    <app-accordion [items]="items" tone="inverse" />
+  </div>
+</section>

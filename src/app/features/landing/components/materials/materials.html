@@ -1,0 +1,40 @@
+<section id="materiales" class="section section--sand" aria-labelledby="materials-title">
+  <div class="container">
+    <app-section-heading
+      eyebrow="Materia y acabado"
+      title="Cinco materiales, muchas formas de expresarte"
+      description="Cada soporte aporta una textura, un contraste y una sensación diferentes. Te ayudamos a elegir el más coherente con tu proyecto."
+      headingId="materials-title"
+    />
+    <div class="materials">
+      @for (material of materials; track material.name; let i = $index) {
+        <article class="material" [class.material--without-image]="!resolveImage(material)">
+          @if (resolveImage(material); as image) {
+            <div
+              class="material__image"
+              appReveal="fade-up"
+              [revealDelay]="i * 0.08"
+            >
+              <img
+                [src]="image"
+                [alt]="resolveAlt(material)"
+                width="1086"
+                height="1448"
+                loading="lazy"
+              />
+            </div>
+          } @else {
+            <div class="material__placeholder" aria-hidden="true">
+              <app-icon name="material" size="large" /><span>Textura y carácter</span>
+            </div>
+          }
+          <div class="material__content">
+            
+            <h3>{{ material.name }}</h3>
+            <p>{{ material.description }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,206 @@
+<section id="contacto" class="section section--white" aria-labelledby="contact-title">
+  <div class="container contact-layout">
+    <div class="contact-copy">
+      <app-section-heading
+        eyebrow="Hablemos de tu proyecto"
+        title="¿Qué idea tienes en mente?"
+        description="Cuéntanos lo esencial. Revisaremos tu solicitud de forma personal y te responderemos con los siguientes pasos."
+        headingId="contact-title"
+      />
+      <div class="contact-note">
+        <app-icon name="clock" />
+        <p>
+          <strong>Plazo mínimo orientativo: 72 horas</strong
+          ><span>El plazo definitivo se confirma según el diseño y las unidades.</span>
+        </p>
+      </div>
+      <div class="contact-alternatives">
+        <p>También puedes escribirnos directamente:</p>
+        <a [href]="contact.emailHref"><app-icon name="email" />{{ contact.email }}</a>
+        <a [href]="contact.instagram" target="_blank" rel="noopener noreferrer"
+          ><app-icon name="instagram" />Instagram</a
+        >
+        <a [href]="contact.tiktok" target="_blank" rel="noopener noreferrer"
+          ><app-icon name="tiktok" />TikTok</a
+        >
+      </div>
+    </div>
+
+    @if (sent()) {
+      <div class="form-success" role="status" tabindex="-1">
+        <div><app-icon name="check" size="large" /></div>
+        <h3>Tu idea ya está en camino</h3>
+        <p>
+          Hemos recibido tu solicitud. Te responderemos al correo que nos has indicado tan pronto
+          como podamos.
+        </p>
+        <button type="button" (click)="sent.set(false)">Enviar otra consulta</button>
+      </div>
+    } @else {
+      <form
+        class="contact-form"
+        name="project-request"
+        method="POST"
+        enctype="multipart/form-data"
+        data-netlify="true"
+        [formGroup]="form"
+        (ngSubmit)="submit($event)"
+        novalidate
+      >
+        <input type="hidden" name="form-name" value="project-request" />
+        <div class="form-grid">
+          <div class="field">
+            <label for="name">Nombre <span aria-hidden="true">*</span></label
+            ><input
+              id="name"
+              name="name"
+              type="text"
+              autocomplete="name"
+              formControlName="name"
+              [attr.aria-invalid]="controlInvalid('name')"
+              [attr.aria-describedby]="controlInvalid('name') ? 'name-error' : null"
+            />
+            @if (controlInvalid('name')) {
+              <p id="name-error" class="field__error">Indica tu nombre (mínimo 2 caracteres).</p>
+            }
+          </div>
+          <div class="field">
+            <label for="email">Correo electrónico <span aria-hidden="true">*</span></label
+            ><input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              formControlName="email"
+              [attr.aria-invalid]="controlInvalid('email')"
+              [attr.aria-describedby]="controlInvalid('email') ? 'email-error' : null"
+            />
+            @if (controlInvalid('email')) {
+              <p id="email-error" class="field__error">Introduce un correo electrónico válido.</p>
+            }
+          </div>
+          <div class="field">
+            <label for="project-type">Tipo de proyecto <span aria-hidden="true">*</span></label
+            ><select
+              id="project-type"
+              name="projectType"
+              formControlName="projectType"
+              [attr.aria-invalid]="controlInvalid('projectType')"
+              [attr.aria-describedby]="controlInvalid('projectType') ? 'project-type-error' : null"
+            >
+              <option value="" disabled>Selecciona una opción</option>
+              @for (option of projectTypes; track option.value) {
+                <option [value]="option.value">{{ option.label }}</option>
+              }
+            </select>
+            @if (controlInvalid('projectType')) {
+              <p id="project-type-error" class="field__error">Selecciona el tipo de proyecto.</p>
+            }
+          </div>
+          <div class="field">
+            <label for="material">Material</label
+            ><select id="material" name="material" formControlName="material">
+              @for (option of materials; track option.value) {
+                <option [value]="option.value">{{ option.label }}</option>
+              }
+            </select>
+          </div>
+          <div class="field field--full">
+            <label for="description">Describe tu idea <span aria-hidden="true">*</span></label
+            ><textarea
+              id="description"
+              name="description"
+              rows="6"
+              formControlName="description"
+              placeholder="Qué quieres crear, para quién es, medidas aproximadas, cantidad..."
+              [attr.aria-invalid]="controlInvalid('description')"
+              [attr.aria-describedby]="
+                controlInvalid('description') ? 'description-error' : 'description-help'
+              "
+            ></textarea>
+            <p id="description-help" class="field__help">Entre 20 y 2.000 caracteres.</p>
+            @if (controlInvalid('description')) {
+              <p id="description-error" class="field__error">
+                Cuéntanos un poco más sobre la idea (mínimo 20 caracteres).
+              </p>
+            }
+          </div>
+          <div class="field">
+            <label for="desired-date">Fecha aproximada</label
+            ><input
+              id="desired-date"
+              name="desiredDate"
+              type="date"
+              formControlName="desiredDate"
+            />
+            <p class="field__help">Si tienes una fecha especial, indícala.</p>
+          </div>
+          <div class="field">
+            <label for="project-file">Archivo opcional</label>
+            <div class="file-control">
+              <input
+                #fileInput
+                id="project-file"
+                name="projectFile"
+                type="file"
+                accept=".pdf,.svg,.dxf,.png,.jpg,.jpeg"
+                (change)="onFileChange($event)"
+              /><app-icon name="upload" /><span>{{
+                fileName() ?? 'PDF, SVG, DXF, PNG o JPG'
+              }}</span>
+            </div>
+            @if (fileName()) {
+              <button class="file-remove" type="button" (click)="removeFile()">
+                Eliminar archivo
+              </button>
+            }
+            @if (fileError(); as error) {
+              <p class="field__error" role="alert">{{ error }}</p>
+            } @else {
+              <p class="field__help">Tamaño máximo: 10 MB.</p>
+            }
+          </div>
+          <div class="field field--full checkbox">
+            <input
+              id="consent"
+              name="consent"
+              type="checkbox"
+              formControlName="consent"
+              value="accepted"
+              [attr.aria-invalid]="controlInvalid('consent')"
+              [attr.aria-describedby]="controlInvalid('consent') ? 'consent-error' : null"
+            /><label for="consent"
+              >He leído la <a href="/politica-privacidad">política de privacidad</a> y autorizo el
+              uso de mis datos para responder a esta solicitud.
+              <span aria-hidden="true">*</span></label
+            >
+            @if (controlInvalid('consent')) {
+              <p id="consent-error" class="field__error">
+                Necesitamos tu consentimiento para responderte.
+              </p>
+            }
+          </div>
+        </div>
+        @if (submitError()) {
+          <p class="form-message form-message--error" role="alert">
+            No hemos podido enviar el formulario. Inténtalo de nuevo o escríbenos a
+            {{ contact.email }}.
+          </p>
+        }
+        <button
+          class="submit-button"
+          type="submit"
+          [disabled]="sending()"
+          [attr.aria-busy]="sending()"
+        >
+          <span>{{ sending() ? 'Enviando...' : 'Enviar mi idea' }}</span
+          ><app-icon name="send" size="small" />
+        </button>
+        <p class="required-note">
+          <span aria-hidden="true">*</span> Campos obligatorios. Utilizaremos tus datos únicamente
+          para responder a tu solicitud.
+        </p>
+      </form>
+    }
+  </div>
+</section>

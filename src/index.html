@@ -1,13 +1,45 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>MalagaCrafters</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>MalagaCrafters | Corte y grabado láser personalizado</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b2239" />
+    <meta
+      name="description"
+      content="Diseño, corte y grabado láser personalizado en madera, metacrilato, vidrio, aluminio y cuero. Envíos a toda España."
+    />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  </head>
+  <body>
+    <app-root></app-root>
+    <noscript
+      >Necesitas activar JavaScript para utilizar el formulario y la navegación interactiva. También
+      puedes escribir a malagacrafters@gmail.com.</noscript
+    >
+
+    <!-- Netlify detecta este formulario estático durante el despliegue. La interfaz visible vive en Angular. -->
+    <form
+      name="project-request"
+      method="POST"
+      enctype="multipart/form-data"
+      data-netlify="true"
+      hidden
+    >
+      <input type="hidden" name="form-name" value="project-request" />
+      <input name="name" />
+      <input name="email" type="email" />
+      <select name="projectType">
+        <option value="otro">Otra idea</option>
+      </select>
+      <select name="material">
+        <option value="por-definir">Necesito asesoramiento</option>
+      </select>
+      <textarea name="description"></textarea>
+      <input name="desiredDate" type="date" />
+      <input name="projectFile" type="file" />
+      <input name="consent" type="checkbox" value="accepted" />
+    </form>
+  </body>
 </html>
