@@ -1,4 +1,8 @@
-<header class="navbar" [class.navbar--scrolled]="scrolled()">
+<header
+  class="navbar"
+  [class.navbar--scrolled]="scrolled()"
+  [class.navbar--menu-open]="menuOpen()"
+>
   <div class="navbar__inner">
     <a
       class="navbar__brand"
@@ -17,6 +21,7 @@
 
     <button
       class="navbar__toggle"
+      [class.navbar__toggle--open]="menuOpen()"
       type="button"
       [attr.aria-expanded]="menuOpen()"
       aria-controls="main-navigation"
