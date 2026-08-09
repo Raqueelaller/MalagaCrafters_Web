@@ -148,10 +148,13 @@ p {
   }
 
   .mobile-carousel__controls button {
-    display: grid;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 2.75rem;
     height: 2.75rem;
-    place-items: center;
+    flex: 0 0 2.75rem;
     padding: 0;
     color: var(--color-navy-900);
     border: 1px solid var(--color-border);
@@ -164,6 +167,10 @@ p {
   }
 
   .mobile-carousel__controls button::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
     width: 0.65rem;
     height: 0.65rem;
     border-top: 2px solid currentColor;
@@ -172,11 +179,11 @@ p {
   }
 
   .mobile-carousel__controls button:first-child::before {
-    transform: translateX(0.1rem) rotate(-135deg);
+    transform: translate(-42%, -50%) rotate(-135deg);
   }
 
   .mobile-carousel__controls button:last-child::before {
-    transform: translateX(-0.1rem) rotate(45deg);
+    transform: translate(-58%, -50%) rotate(45deg);
   }
 
   .categories,
