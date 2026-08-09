@@ -38,14 +38,14 @@
   gap: var(--space-3);
   color: var(--color-navy-950);
   border-radius: var(--radius-sm);
-  font-size: 1.145rem;
+  font-size: 2.7rem;
   font-weight: 750;
   letter-spacing: -0.03em;
   text-decoration: none;
 }
 
 .navbar__brand img {
-  width: clamp(3rem, 5vw, 4rem);
+  width: clamp(3.75rem, 5vw, 4.75rem);
   height: auto;
   object-fit: contain;
   flex: 0 0 auto;
@@ -161,7 +161,7 @@
     display: none;
   }
   .navbar__brand img {
-    width: 3.1rem;
+    width: 3.75rem;
   }
   .navbar__nav--open {
     visibility: visible;
@@ -188,10 +188,10 @@
   }
   .navbar__brand {
     gap: var(--space-2);
-    font-size: 1rem;
+    font-size: 2.1rem;
   }
   .navbar__brand img {
-    width: 2.7rem;
+    width: 3.35rem;
   }
   .navbar__brand span {
     line-height: 1.1;

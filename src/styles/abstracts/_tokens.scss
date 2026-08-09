@@ -68,7 +68,7 @@
   --container: 75rem;
   --container-narrow: 50rem;
   --gutter: clamp(1.25rem, 4vw, 3rem);
-  --header-height: 5rem;
+  --header-height: 5.75rem;
 
   --font-family: 'Manrope', 'Segoe UI', Arial, sans-serif;
   --font-hero: 700 clamp(2.75rem, 7vw, 5.75rem) / 0.98 var(--font-family);
@@ -90,7 +90,7 @@
 
 @media (max-width: 48rem) {
   :root {
-    --header-height: 4.5rem;
+    --header-height: 5.25rem;
     --gutter: clamp(1rem, 5vw, 1.5rem);
     --space-9: 4rem;
     --space-10: 4.5rem;
