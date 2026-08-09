@@ -6,7 +6,6 @@
 }
 .category-card {
   @include mixins.surface-card;
-  @include mixins.card-hover;
   overflow: hidden;
 }
 .category-card__image {
@@ -34,9 +33,32 @@
 }
 @media (max-width: 48rem) {
   .categories {
-    grid-template-columns: 1fr;
+    display: flex;
+    gap: var(--space-3);
+    overflow-x: auto;
+    padding: 0 var(--space-1) var(--space-2);
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .categories::-webkit-scrollbar {
+    display: none;
+  }
+  .category-card {
+    flex: 0 0 min(78vw, 20rem);
+    border-radius: var(--radius-md);
+    scroll-snap-align: start;
+  }
+  .category-card__image {
+    aspect-ratio: 16 / 9;
+  }
+  .category-card img {
+    padding: var(--space-2);
   }
   .category-card__content {
-    padding: var(--space-4);
+    padding: var(--space-3) var(--space-4) var(--space-4);
+  }
+  .category-card p {
+    margin-top: var(--space-2);
   }
 }

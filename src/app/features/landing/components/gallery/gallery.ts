@@ -13,4 +13,8 @@ import { SectionHeading } from '../../../../shared/components/section-heading/se
 })
 export class Gallery {
   protected readonly items = GALLERY_ITEMS;
+
+  protected scrollCards(track: HTMLElement, direction: -1 | 1): void {
+    track.scrollBy({ left: track.clientWidth * 0.85 * direction, behavior: 'smooth' });
+  }
 }

@@ -8,20 +8,21 @@
   @include mixins.container;
   display: grid;
   grid-template-columns: minmax(17rem, 1.7fr) 1fr 1.2fr;
-  gap: var(--space-9);
-  padding-block: var(--space-10);
+  gap: var(--space-7);
+  padding-block: var(--space-6) var(--space-8);
 }
 .footer__brand {
   max-width: 25rem;
 }
 .footer__brand img {
-  width: clamp(7rem, 12vw, 9rem);
+  width: clamp(5.5rem, 9vw, 7rem);
   height: auto;
   object-fit: contain;
   border-radius: var(--radius-md);
 }
 .footer__brand p {
-  margin: var(--space-5) 0 0;
+  margin: var(--space-3) 0 0;
+  font: var(--font-body-sm);
 }
 .footer h2 {
   margin: 0 0 var(--space-5);
@@ -81,15 +82,28 @@
 }
 @media (max-width: 35rem) {
   .footer__inner {
-    grid-template-columns: 1fr;
-    gap: var(--space-7);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-6) var(--space-4);
+    padding-block: var(--space-5) var(--space-6);
+  }
+  .footer__brand {
+    grid-column: 1 / -1;
   }
   .footer__brand img {
-    width: clamp(6.5rem, 32vw, 8rem);
+    width: 5rem;
+  }
+  .footer h2 {
+    margin-bottom: var(--space-3);
+  }
+  .footer ul {
+    gap: var(--space-2);
+    font: var(--font-body-sm);
   }
   .footer__bottom {
     align-items: flex-start;
     flex-direction: column;
+    gap: var(--space-3);
+    padding-block: var(--space-4);
   }
   .footer__bottom nav {
     display: grid;

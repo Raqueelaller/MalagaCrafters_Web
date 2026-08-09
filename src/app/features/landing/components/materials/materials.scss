@@ -7,7 +7,6 @@
 }
 .material {
   @include mixins.surface-card;
-  @include mixins.card-hover;
   overflow: hidden;
   grid-column: span 2;
 }
@@ -38,7 +37,7 @@
   gap: var(--space-3);
   text-align: center;
   color: var(--color-navy-700);
-  background: linear-gradient(145deg, var(--color-sand-50), var(--color-sand-200));
+  background: var(--color-white);
   font-weight: 650;
 }
 
@@ -75,13 +74,37 @@
     grid-column: auto;
   }
 }
-@media (max-width: 36rem) {
+@media (max-width: 48rem) {
   .materials {
-    grid-template-columns: 1fr;
+    display: flex;
+    gap: var(--space-3);
+    overflow-x: auto;
+    padding: 0 var(--space-1) var(--space-2);
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .materials::-webkit-scrollbar {
+    display: none;
   }
   .material,
   .material:nth-child(4),
   .material:nth-child(5) {
-    grid-column: auto;
+    flex: 0 0 min(78vw, 20rem);
+    border-radius: var(--radius-md);
+    scroll-snap-align: start;
+  }
+  .material__image,
+  .material__placeholder {
+    aspect-ratio: 16 / 9;
+  }
+  .material__image img {
+    padding: var(--space-2);
+  }
+  .material__content {
+    padding: var(--space-3) var(--space-4) var(--space-4);
+  }
+  .material p {
+    margin-top: var(--space-2);
   }
 }

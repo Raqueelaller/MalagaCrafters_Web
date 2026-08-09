@@ -1,4 +1,4 @@
-<section id="beneficios" class="section section--sand" aria-labelledby="benefits-title">
+<section id="beneficios" class="section section--white" aria-labelledby="benefits-title">
   <div class="container benefits-layout">
     <div class="benefits-intro">
       <app-section-heading
@@ -8,7 +8,7 @@
         headingId="benefits-title"
       />
     </div>
-    <div class="benefits">
+    <div class="benefits" #benefitsTrack>
       @for (benefit of benefits; track benefit.title) {
         <article class="benefit">
           <app-icon [name]="benefit.icon" />
@@ -18,6 +18,10 @@
           </div>
         </article>
       }
+    </div>
+    <div class="mobile-carousel__controls" aria-label="Controles de ventajas">
+      <button type="button" aria-label="Ver ventajas anteriores" (click)="scrollCards(benefitsTrack, -1)">←</button>
+      <button type="button" aria-label="Ver más ventajas" (click)="scrollCards(benefitsTrack, 1)">→</button>
     </div>
   </div>
 </section>

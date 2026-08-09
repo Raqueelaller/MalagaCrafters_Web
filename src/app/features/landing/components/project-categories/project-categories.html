@@ -6,7 +6,7 @@
       description="Estas piezas son solo un punto de partida. Si puedes explicarnos tu idea, podemos estudiar cómo convertirla en algo real y personal."
       headingId="ideas-title"
     />
-    <div class="categories">
+    <div class="categories" #categoriesTrack>
       @for (category of categories; track category.title; let i = $index) {
         <article class="category-card">
           <div
@@ -28,6 +28,10 @@
           </div>
         </article>
       }
+    </div>
+    <div class="mobile-carousel__controls" aria-label="Controles de posibilidades">
+      <button type="button" aria-label="Ver posibilidades anteriores" (click)="scrollCards(categoriesTrack, -1)">←</button>
+      <button type="button" aria-label="Ver más posibilidades" (click)="scrollCards(categoriesTrack, 1)">→</button>
     </div>
   </div>
 </section>

@@ -43,5 +43,14 @@
         Contáctanos
       </app-button>
     </nav>
+
+    <button
+      class="navbar__backdrop"
+      [class.navbar__backdrop--open]="menuOpen()"
+      type="button"
+      aria-label="Cerrar menú"
+      [attr.tabindex]="menuOpen() ? 0 : -1"
+      (click)="closeMenu()"
+    ></button>
   </div>
 </header>

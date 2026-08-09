@@ -45,12 +45,12 @@
 }
 .process h3 {
   margin: var(--space-5) 0 0;
-  color: var(--color-navy-950);
+  color: var(--color-white);
   font: var(--font-h3);
 }
 .process p {
   margin: var(--space-3) 0 0;
-  color: var(--color-text-secondary);
+  color: var(--color-white-76);
 }
 .process__note {
   display: flex;
@@ -59,9 +59,9 @@
   gap: var(--space-6);
   padding: var(--space-5) var(--space-6);
   margin-top: var(--space-8);
-  color: var(--color-white);
+  color: var(--color-navy-950);
   border-radius: var(--radius-lg);
-  background: var(--color-navy-900);
+  background: var(--color-white);
   box-shadow: var(--shadow-md);
 }
 .process__note > div {
@@ -79,7 +79,7 @@
   color: inherit;
 }
 .process__note span {
-  color: var(--color-white-70);
+  color: var(--color-text-secondary);
   font: var(--font-body-sm);
 }
 @media (max-width: 56rem) {

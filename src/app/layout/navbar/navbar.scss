@@ -96,11 +96,16 @@
   border-radius: var(--radius-full);
 }
 
+.navbar__backdrop {
+  display: none;
+}
+
 @media (max-width: 67rem) {
   .navbar__toggle {
     display: block;
   }
   .navbar__nav {
+    z-index: 2;
     position: absolute;
     visibility: hidden;
     opacity: 0;
@@ -117,6 +122,25 @@
       opacity var(--motion-fast),
       transform var(--motion-fast),
       visibility var(--motion-fast);
+  }
+  .navbar__backdrop {
+    position: fixed;
+    z-index: 1;
+    visibility: hidden;
+    opacity: 0;
+    inset: var(--header-height) 0 0;
+    display: block;
+    width: 100%;
+    height: calc(100dvh - var(--header-height));
+    padding: 0;
+    border: 0;
+    background: rgb(7 26 45 / 48%);
+    backdrop-filter: blur(2px);
+    transition: opacity var(--motion-fast), visibility var(--motion-fast);
+  }
+  .navbar__backdrop--open {
+    visibility: visible;
+    opacity: 1;
   }
   .navbar__brand img {
     width: 3.1rem;

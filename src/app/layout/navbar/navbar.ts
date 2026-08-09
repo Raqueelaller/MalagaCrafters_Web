@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, Component, HostListener, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, HostListener, inject, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter } from 'rxjs';
 import { NAVIGATION_ITEMS } from '../../core/constants/navigation.constants';
@@ -15,12 +15,14 @@ import { Button } from '../../shared/components/button/button';
 export class Navbar {
   private readonly document = inject(DOCUMENT);
   private readonly router = inject(Router);
+  private readonly destroyRef = inject(DestroyRef);
 
   protected readonly navigationItems = NAVIGATION_ITEMS;
   protected readonly menuOpen = signal(false);
   protected readonly scrolled = signal(false);
 
   constructor() {
+    this.destroyRef.onDestroy(() => this.setPageLocked(false));
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => this.closeMenu());
@@ -34,11 +36,18 @@ export class Navbar {
   }
 
   protected toggleMenu(): void {
-    this.menuOpen.update((open) => !open);
+    const open = !this.menuOpen();
+    this.menuOpen.set(open);
+    this.setPageLocked(open);
   }
 
   protected closeMenu(): void {
     this.menuOpen.set(false);
+    this.setPageLocked(false);
+  }
+
+  private setPageLocked(locked: boolean): void {
+    this.document.body.style.overflow = locked ? 'hidden' : '';
   }
 
   protected goHome(): void {

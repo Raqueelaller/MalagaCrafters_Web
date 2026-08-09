@@ -14,6 +14,10 @@ import { SectionHeading } from '../../../../shared/components/section-heading/se
 export class Materials {
   protected readonly materials = MATERIALS;
 
+  protected scrollCards(track: HTMLElement, direction: -1 | 1): void {
+    track.scrollBy({ left: track.clientWidth * 0.85 * direction, behavior: 'smooth' });
+  }
+
   protected resolveImage(material: (typeof MATERIALS)[number]): string | null {
     return material.image ?? (material.name === 'Cuero' ? '/images/llavero_cuero.png' : null);
   }

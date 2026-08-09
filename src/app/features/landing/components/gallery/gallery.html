@@ -1,13 +1,12 @@
-<section id="trabajos" class="section section--navy" aria-labelledby="gallery-title">
+<section id="trabajos" class="section section--white" aria-labelledby="gallery-title">
   <div class="container">
     <app-section-heading
       eyebrow="Trabajos reales"
       title="Ideas que ya han cobrado vida"
       description="Una selección de proyectos realizados para personas y momentos diferentes. No son modelos cerrados: tu diseño puede empezar en otro lugar completamente distinto."
       headingId="gallery-title"
-      tone="inverse"
     />
-    <div class="gallery">
+    <div class="gallery" #galleryTrack>
       @for (item of items; track item.image; let i = $index) {
         <figure class="gallery__item">
           <div
@@ -18,10 +17,14 @@
             <img [src]="item.image" [alt]="item.alt" width="1086" height="1448" loading="lazy" />
           </div>
           <figcaption>
-            ><strong>{{ item.caption }}</strong>
+            <strong>{{ item.caption }}</strong>
           </figcaption>
         </figure>
       }
+    </div>
+    <div class="mobile-carousel__controls" aria-label="Controles de trabajos">
+      <button type="button" aria-label="Ver trabajos anteriores" (click)="scrollCards(galleryTrack, -1)">←</button>
+      <button type="button" aria-label="Ver más trabajos" (click)="scrollCards(galleryTrack, 1)">→</button>
     </div>
     <div class="gallery__cta">
       <p>¿Tu idea no se parece a ninguna de estas?</p>

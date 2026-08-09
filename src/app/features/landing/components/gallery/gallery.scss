@@ -6,7 +6,6 @@
 }
 .gallery__item {
   @include mixins.surface-card;
-  @include mixins.card-hover;
   overflow: hidden;
 }
 .gallery__image {
@@ -45,15 +44,35 @@
 }
 .gallery__cta p {
   margin: 0;
-  color: var(--color-white-76);
+  color: var(--color-text-secondary);
   font: var(--font-body-lg);
 }
 @media (max-width: 48rem) {
   .gallery {
-    grid-template-columns: 1fr;
+    display: flex;
+    gap: var(--space-3);
+    overflow-x: auto;
+    padding: 0 var(--space-1) var(--space-2);
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .gallery::-webkit-scrollbar {
+    display: none;
+  }
+  .gallery__item {
+    flex: 0 0 min(78vw, 20rem);
+    border-radius: var(--radius-md);
+    scroll-snap-align: start;
+  }
+  .gallery__image {
+    aspect-ratio: 16 / 9;
+  }
+  .gallery__image img {
+    padding: var(--space-2);
   }
   .gallery figcaption {
-    padding: var(--space-4);
+    padding: var(--space-3) var(--space-4) var(--space-4);
   }
   .gallery__cta {
     align-items: stretch;

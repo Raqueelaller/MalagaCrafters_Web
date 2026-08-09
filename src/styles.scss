@@ -24,7 +24,7 @@ body {
   min-width: 20rem;
   margin: 0;
   color: var(--color-text);
-  background: var(--color-sand-50);
+  background: var(--color-white);
   font: var(--font-body);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -73,7 +73,7 @@ p {
   background: var(--color-white);
 }
 .section--sand {
-  background: var(--color-sand-100);
+  background: var(--color-white);
 }
 .section--navy {
   color: var(--color-white);
@@ -109,6 +109,10 @@ p {
   border: 0 !important;
 }
 
+.mobile-carousel__controls {
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -125,6 +129,34 @@ p {
 @media (max-width: 48rem) {
   .section {
     padding-block: var(--space-9);
+  }
+
+  .mobile-carousel__controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+  }
+
+  .mobile-carousel__controls button {
+    display: grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    place-items: center;
+    padding: 0;
+    color: var(--color-navy-900);
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    background: var(--color-white);
+    box-shadow: var(--shadow-sm);
+    font-size: 1.35rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .mobile-carousel__controls button:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 3px;
   }
 }
 
